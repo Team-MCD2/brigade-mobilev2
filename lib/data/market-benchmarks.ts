@@ -25,6 +25,8 @@ const FALLBACK_BAND: Record<
   desox: { minMul: 0.35, maxMul: 0.75 },
   software: { minMul: 0.15, maxMul: 0.4 },
   unlock: { minMul: 0.2, maxMul: 0.45 },
+  housing: { minMul: 0.28, maxMul: 0.55 },
+  network: { minMul: 0.25, maxMul: 0.52 },
   other: { minMul: 0.2, maxMul: 0.55 },
 };
 
@@ -33,6 +35,8 @@ const CATEGORY_TWEAK: Partial<Record<DeviceCategoryId, { min: number; max: numbe
   tablet: { min: 0.97, max: 1.05 },
   computer: { min: 0.95, max: 1.08 },
   smartphone: { min: 1, max: 1 },
+  console: { min: 0.96, max: 1.04 },
+  other: { min: 0.95, max: 1.06 },
 };
 
 /**

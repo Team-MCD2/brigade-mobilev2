@@ -1,4 +1,5 @@
-import type { BrandId, DeviceCategoryId } from "./brands";
+import { BRANDS, type BrandId, type DeviceCategoryId } from "./brands";
+import { REPAIR_FALLBACK_BY_CATEGORY } from "./repair-fallbacks";
 import type { RepairId } from "./repairs";
 
 export interface DeviceModel {
@@ -212,6 +213,74 @@ const SAMSUNG_MODELS: DeviceModel[] = [
       unlock: 45,
     },
   },
+  {
+    id: "samsung-galaxy-a55",
+    slug: "galaxy-a55",
+    brandId: "samsung",
+    name: "Galaxy A55",
+    category: "smartphone",
+    repairs: {
+      screen: 135,
+      battery: 52,
+      camera: 69,
+      chargePort: 52,
+      speaker: 46,
+      desox: 72,
+      software: 36,
+      unlock: 46,
+    },
+  },
+  {
+    id: "samsung-galaxy-s25",
+    slug: "galaxy-s25",
+    brandId: "samsung",
+    name: "Galaxy S25",
+    category: "smartphone",
+    repairs: {
+      screen: 239,
+      battery: 62,
+      camera: 94,
+      chargePort: 66,
+      speaker: 56,
+      desox: 88,
+      software: 39,
+      unlock: 49,
+    },
+  },
+  {
+    id: "samsung-galaxy-s25-ultra",
+    slug: "galaxy-s25-ultra",
+    brandId: "samsung",
+    name: "Galaxy S25 Ultra",
+    category: "smartphone",
+    repairs: {
+      screen: 309,
+      battery: 72,
+      camera: 104,
+      chargePort: 72,
+      speaker: 62,
+      desox: 99,
+      software: 42,
+      unlock: 52,
+    },
+  },
+  {
+    id: "samsung-galaxy-z-fold-6",
+    slug: "galaxy-z-fold-6",
+    brandId: "samsung",
+    name: "Galaxy Z Fold 6",
+    category: "smartphone",
+    repairs: {
+      screen: 479,
+      battery: 102,
+      camera: 112,
+      chargePort: 82,
+      speaker: 70,
+      desox: 142,
+      software: 49,
+      unlock: 59,
+    },
+  },
 ];
 
 const SAMSUNG_TABLETS: DeviceModel[] = [
@@ -261,6 +330,22 @@ const SAMSUNG_TABLETS: DeviceModel[] = [
       desox: 79,
       software: 39,
       unlock: 49,
+    },
+  },
+  {
+    id: "samsung-galaxy-tab-s9-fe",
+    slug: "galaxy-tab-s9-fe",
+    brandId: "samsung",
+    name: "Galaxy Tab S9 FE",
+    category: "tablet",
+    repairs: {
+      screen: 199,
+      battery: 82,
+      chargePort: 68,
+      speaker: 58,
+      desox: 92,
+      software: 42,
+      unlock: 52,
     },
   },
 ];
@@ -405,6 +490,23 @@ const XIAOMI_MODELS: DeviceModel[] = [
     },
   },
   {
+    id: "xiaomi-14-ultra",
+    slug: "xiaomi-14-ultra",
+    brandId: "xiaomi",
+    name: "Xiaomi 14 Ultra",
+    category: "smartphone",
+    repairs: {
+      screen: 269,
+      battery: 59,
+      camera: 95,
+      chargePort: 62,
+      speaker: 54,
+      desox: 92,
+      software: 39,
+      unlock: 49,
+    },
+  },
+  {
     id: "xiaomi-pad-6",
     slug: "pad-6",
     brandId: "xiaomi",
@@ -491,6 +593,40 @@ const GOOGLE_MODELS: DeviceModel[] = [
       unlock: 49,
     },
   },
+  {
+    id: "google-pixel-9",
+    slug: "pixel-9",
+    brandId: "google",
+    name: "Pixel 9",
+    category: "smartphone",
+    repairs: {
+      screen: 229,
+      battery: 55,
+      camera: 92,
+      chargePort: 62,
+      speaker: 53,
+      desox: 87,
+      software: 39,
+      unlock: 49,
+    },
+  },
+  {
+    id: "google-pixel-9-pro",
+    slug: "pixel-9-pro",
+    brandId: "google",
+    name: "Pixel 9 Pro",
+    category: "smartphone",
+    repairs: {
+      screen: 279,
+      battery: 59,
+      camera: 99,
+      chargePort: 66,
+      speaker: 56,
+      desox: 92,
+      software: 39,
+      unlock: 49,
+    },
+  },
 ];
 
 const ONEPLUS_MODELS: DeviceModel[] = [
@@ -524,6 +660,76 @@ const ONEPLUS_MODELS: DeviceModel[] = [
       chargePort: 62,
       speaker: 52,
       desox: 85,
+      software: 39,
+      unlock: 49,
+    },
+  },
+];
+
+const OPPO_MODELS: DeviceModel[] = [
+  {
+    id: "oppo-find-x6-pro",
+    slug: "find-x6-pro",
+    brandId: "oppo",
+    name: "Find X6 Pro",
+    category: "smartphone",
+    repairs: {
+      screen: 249,
+      battery: 59,
+      camera: 89,
+      chargePort: 62,
+      speaker: 52,
+      desox: 89,
+      software: 39,
+      unlock: 49,
+    },
+  },
+  {
+    id: "oppo-reno-11",
+    slug: "reno-11",
+    brandId: "oppo",
+    name: "Reno 11",
+    category: "smartphone",
+    repairs: {
+      screen: 159,
+      battery: 49,
+      camera: 75,
+      chargePort: 55,
+      speaker: 48,
+      desox: 79,
+      software: 39,
+      unlock: 45,
+    },
+  },
+  {
+    id: "oppo-a78",
+    slug: "a78",
+    brandId: "oppo",
+    name: "A78",
+    category: "smartphone",
+    repairs: {
+      screen: 119,
+      battery: 45,
+      camera: 65,
+      chargePort: 49,
+      speaker: 42,
+      desox: 69,
+      software: 35,
+      unlock: 42,
+    },
+  },
+  {
+    id: "oppo-pad-2",
+    slug: "pad-2",
+    brandId: "oppo",
+    name: "Pad 2",
+    category: "tablet",
+    repairs: {
+      screen: 179,
+      battery: 75,
+      chargePort: 59,
+      speaker: 52,
+      desox: 82,
       software: 39,
       unlock: 49,
     },
@@ -1001,7 +1207,29 @@ const APPLE_COMPUTERS: DeviceModel[] = [
   },
 ];
 
-export const MODELS: DeviceModel[] = [
+function buildAutoPlaceholderModels(core: DeviceModel[]): DeviceModel[] {
+  const have = new Set(core.map((m) => `${m.brandId}:${m.category}`));
+  const out: DeviceModel[] = [];
+  for (const b of BRANDS) {
+    for (const cat of b.categories) {
+      const k = `${b.id}:${cat}`;
+      if (have.has(k)) continue;
+      have.add(k);
+      const slug = `${b.id}-non-liste-${cat}`;
+      out.push({
+        id: `${b.id}-${cat}-non-liste`,
+        slug,
+        brandId: b.id,
+        category: cat,
+        name: `${b.name} — modèle non listé (précisez dans les notes)`,
+        repairs: { ...(REPAIR_FALLBACK_BY_CATEGORY[cat] ?? REPAIR_FALLBACK_BY_CATEGORY.other) },
+      });
+    }
+  }
+  return out;
+}
+
+const CORE_MODELS: DeviceModel[] = [
   ...APPLE_IPHONES,
   ...APPLE_TABLETS,
   ...APPLE_COMPUTERS,
@@ -1011,6 +1239,7 @@ export const MODELS: DeviceModel[] = [
   ...XIAOMI_MODELS,
   ...GOOGLE_MODELS,
   ...ONEPLUS_MODELS,
+  ...OPPO_MODELS,
   ...SONY_PHONE_MODELS,
   ...SONY_TABLET_MODELS,
   ...SONY_CONSOLE_MODELS,
@@ -1019,6 +1248,8 @@ export const MODELS: DeviceModel[] = [
   ...NINTENDO_MODELS,
   ...OTHER_GENERIC,
 ];
+
+export const MODELS: DeviceModel[] = [...CORE_MODELS, ...buildAutoPlaceholderModels(CORE_MODELS)];
 
 export function getModelsByBrand(brandId: BrandId, category?: DeviceCategoryId): DeviceModel[] {
   return MODELS.filter((m) => {
@@ -1029,52 +1260,12 @@ export function getModelsByBrand(brandId: BrandId, category?: DeviceCategoryId):
 }
 
 export function getModelBySlug(brandSlug: string, modelSlug: string): DeviceModel | undefined {
-  const brandMap: Record<string, BrandId> = {
-    apple: "apple",
-    samsung: "samsung",
-    huawei: "huawei",
-    xiaomi: "xiaomi",
-    google: "google",
-    oneplus: "oneplus",
-    sony: "sony",
-    microsoft: "microsoft",
-    asus: "asus",
-    nintendo: "nintendo",
-    other: "other",
-  };
-  const bid = brandMap[brandSlug];
-  if (!bid) return undefined;
-  return MODELS.find((m) => m.brandId === bid && m.slug === modelSlug);
+  if (!BRANDS.some((b) => b.id === brandSlug)) return undefined;
+  return MODELS.find((m) => m.brandId === brandSlug && m.slug === modelSlug);
 }
 
 export function getModelById(id: string): DeviceModel | undefined {
   return MODELS.find((m) => m.id === id);
 }
 
-/** Tarifs moyens si modèle inconnu — pour devis orienté */
-export function getFallbackRepairs(category: DeviceCategoryId): Partial<Record<RepairId, number>> {
-  switch (category) {
-    case "smartphone":
-      return { screen: 129, battery: 49, camera: 79, chargePort: 59, speaker: 55, desox: 79, software: 39, unlock: 49 };
-    case "tablet":
-      return { screen: 189, battery: 79, chargePort: 69, speaker: 59, desox: 89, software: 45, unlock: 55 };
-    case "computer":
-      return { screen: 399, battery: 129, chargePort: 89, speaker: 79, desox: 129, software: 59, unlock: 69 };
-    case "console":
-      return {
-        screen: 149,
-        battery: 55,
-        camera: 0,
-        chargePort: 59,
-        speaker: 55,
-        desox: 89,
-        software: 45,
-        unlock: 0,
-        other: 69,
-      };
-    case "other":
-      return { screen: 89, battery: 45, chargePort: 45, speaker: 45, desox: 65, software: 35, other: 55 };
-    default:
-      return { screen: 99, battery: 49, software: 39, other: 49 };
-  }
-}
+export { getFallbackRepairs } from "./repair-fallbacks";

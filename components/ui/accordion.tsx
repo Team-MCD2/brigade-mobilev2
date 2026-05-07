@@ -23,6 +23,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
+/** Trigger en rounded-lg (surface douce, comme Input) — boutons séparés restent « carrés » via Button. */
 function AccordionTrigger({
   className,
   children,

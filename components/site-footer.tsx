@@ -13,6 +13,7 @@ const services = [
 ];
 
 const company = [
+  { href: "/devis", label: "Devis en ligne" },
   { href: "/pro", label: "Entreprises" },
   { href: "/a-propos", label: "À propos" },
   { href: "/avis", label: "Avis" },

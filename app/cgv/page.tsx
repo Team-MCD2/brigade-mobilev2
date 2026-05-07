@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-config";
 
@@ -20,6 +21,11 @@ export default function CgvPage() {
       </p>
       <p className="mt-4 text-muted-foreground">
         Paiement en boutique à la remise de l&apos;appareil — CB, sans contact, espèces.
+      </p>
+      <p className="mt-8 text-sm">
+        <Link href="/devis" className="font-medium text-primary underline underline-offset-4 hover:no-underline">
+          Obtenir un devis indicatif
+        </Link>
       </p>
     </article>
   );

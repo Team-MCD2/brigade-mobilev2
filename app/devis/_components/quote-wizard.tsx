@@ -105,7 +105,7 @@ export function QuoteWizard() {
       : null;
 
   const repairIdsForStep =
-    category === "console" ? REPAIR_IDS.filter((id) => id !== "camera" && id !== "unlock") : REPAIR_IDS;
+    category === "console" ? REPAIR_IDS.filter((id) => id !== "camera" && id !== "unlock") : [...REPAIR_IDS];
 
   const progress = ((s.step + 1) / STEPS) * 100;
 
@@ -168,9 +168,6 @@ export function QuoteWizard() {
           Appareil → panne → mode (boutique, domicile, postal) → créneau → récap avec total indicatif.
         </p>
         <Progress value={progress} className="mt-8" />
-        <p className="mt-2 font-num text-xs text-muted-foreground">
-          Montants <strong className="text-foreground">à partir de</strong> — figés après diagnostic gratuit.
-        </p>
       </div>
 
       <AnimatePresence mode="wait">
@@ -225,7 +222,7 @@ export function QuoteWizard() {
                   préciserez le modèle à l&apos;étape suivante ou dans les notes.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              <CardContent className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {BRANDS.filter((b) => b.categories.includes(category)).map((b) => {
                   const active = s.brandId === b.id;
                   return (

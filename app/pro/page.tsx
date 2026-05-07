@@ -10,6 +10,7 @@ import {
   Mail,
   Phone,
   Smartphone,
+  Sparkles,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -120,6 +121,12 @@ export default function ProPage() {
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             <Button asChild className="rounded-lg">
+              <Link href="/devis">
+                <Sparkles className="size-4" />
+                Devis en ligne <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="rounded-lg">
               <Link href="/contact">
                 <Mail className="size-4" />
                 Contact pro <ArrowRight className="size-4" />

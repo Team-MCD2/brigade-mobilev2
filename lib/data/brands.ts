@@ -8,15 +8,15 @@ export const DEVICE_CATEGORY_LABELS: Record<
 > = {
   smartphone: {
     title: "Smartphone",
-    description: "Téléphone classique, pliable ou gaming — iPhone, Galaxy, Pixel, Xiaomi, OnePlus…",
+    description: "Téléphone classique, pliable ou gaming — iPhone, Galaxy, Pixel, Xiaomi, OnePlus, Oppo…",
   },
   tablet: {
     title: "Tablette",
-    description: "iPad, Galaxy Tab, liseuses grand format, tablettes graphiques Android.",
+    description: "iPad, Galaxy Tab, Surface, liseuses grand format, tablettes Android.",
   },
   computer: {
     title: "Ordinateur portable / fixe",
-    description: "MacBook, Surface, PC portable, tour / mini-PC — Windows, macOS ou Linux.",
+    description: "MacBook, Surface, PC portable Asus, tour / mini-PC — Windows, macOS ou Linux.",
   },
   console: {
     title: "Console & accessoires",
@@ -35,6 +35,7 @@ export type BrandId =
   | "xiaomi"
   | "google"
   | "oneplus"
+  | "oppo"
   | "sony"
   | "microsoft"
   | "asus"
@@ -55,6 +56,7 @@ export const BRANDS: Brand[] = [
   { id: "xiaomi", name: "Xiaomi", categories: ["smartphone", "tablet"] },
   { id: "google", name: "Google", categories: ["smartphone"] },
   { id: "oneplus", name: "OnePlus", categories: ["smartphone"] },
+  { id: "oppo", name: "Oppo", categories: ["smartphone", "tablet"] },
   { id: "sony", name: "Sony", categories: ["smartphone", "tablet", "console"] },
   { id: "microsoft", name: "Microsoft", categories: ["computer", "console"] },
   { id: "asus", name: "Asus", categories: ["computer", "tablet"] },

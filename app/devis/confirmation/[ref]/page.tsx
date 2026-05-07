@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowRight, CheckCircle2, Home, MapPin, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, Home, MapPin, Phone, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,13 +71,19 @@ export default function ConfirmationPage() {
               Notre équipe confirme sous peu. Besoin d&apos;aller plus vite&nbsp;? Appelez l&apos;atelier.
             </p>
             <div className="grid gap-2 sm:grid-cols-2">
+              <Button asChild className="rounded-lg">
+                <Link href="/devis">
+                  <Sparkles className="size-4" />
+                  Nouveau devis
+                </Link>
+              </Button>
               <Button asChild variant="outline" className="rounded-lg">
                 <Link href="/boutique">
                   <MapPin className="size-4" />
                   Boutique
                 </Link>
               </Button>
-              <Button asChild className="rounded-lg">
+              <Button asChild variant="outline" className="rounded-lg sm:col-span-2">
                 <a href={`tel:${siteConfig.contact.phoneE164}`}>
                   <Phone className="size-4" />
                   Appeler

@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 
+import { BRANDS } from "@/lib/data/brands";
 import { MODELS } from "@/lib/data/models";
 import { SERVICE_PAGES } from "@/lib/data/servicePages";
 import { siteConfig } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
+  const brandPaths = BRANDS.map((b) => `/reparations/${b.id}`);
   const staticRoutes = [
     "",
     "/devis",
@@ -19,17 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/mentions-legales",
     "/confidentialite",
     "/cgv",
-    "/reparations/apple",
-    "/reparations/samsung",
-    "/reparations/huawei",
-    "/reparations/google",
-    "/reparations/xiaomi",
-    "/reparations/oneplus",
-    "/reparations/sony",
-    "/reparations/microsoft",
-    "/reparations/asus",
-    "/reparations/nintendo",
-    "/reparations/other",
+    ...brandPaths,
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),

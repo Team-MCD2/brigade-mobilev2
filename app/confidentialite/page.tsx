@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-config";
 
@@ -17,6 +18,11 @@ export default function PrivacyPage() {
       </p>
       <p className="mt-4 text-muted-foreground">
         Hébergement conforme aux standards de sécurité courants ; pas de revente de données.
+      </p>
+      <p className="mt-8 text-sm">
+        <Link href="/devis" className="font-medium text-primary underline underline-offset-4 hover:no-underline">
+          Faire un devis en ligne
+        </Link>
       </p>
     </article>
   );

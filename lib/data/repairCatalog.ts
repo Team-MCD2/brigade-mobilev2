@@ -1,16 +1,18 @@
 import type { DeviceCategoryId } from "./brands";
 import { getElsewhereRepairPriceBandEuro, formatMarketBandEuro } from "./market-benchmarks";
-import { getFallbackRepairs, getModelById, type DeviceModel } from "./models";
+import { getFallbackRepairs } from "./repair-fallbacks";
+import { getModelById, type DeviceModel } from "./models";
 import type { PickupModeId } from "./pickupModes";
 import { PICKUP_MODE_META } from "./pickupModes";
 import { REPAIR_LABELS, type RepairId } from "./repairs";
 
 export function getRepairPricesForModel(modelId: string | null, category: DeviceCategoryId): Partial<Record<RepairId, number>> {
+  const fallback = getFallbackRepairs(category);
   if (!modelId || modelId === "unknown") {
-    return getFallbackRepairs(category);
+    return fallback;
   }
   const m = getModelById(modelId);
-  return m?.repairs ?? getFallbackRepairs(category);
+  return { ...fallback, ...(m?.repairs ?? {}) };
 }
 
 export function sumRepairs(

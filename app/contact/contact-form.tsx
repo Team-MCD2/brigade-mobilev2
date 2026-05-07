@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 
@@ -40,6 +41,13 @@ export function ContactForm() {
         </Badge>
         <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Écrire à l&apos;atelier</h1>
         <p className="mt-4 text-muted-foreground">Réponse sous 24h ouvrées — pour l&apos;urgence, téléphone.</p>
+        <p className="mx-auto mt-6 max-w-lg rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+          Pour un prix indicatif immédiat (toutes marques et catégories), passez par le{" "}
+          <Link href="/devis" className="font-medium text-primary underline underline-offset-2 hover:no-underline">
+            devis en ligne
+          </Link>
+          .
+        </p>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-10 px-4 pb-24 sm:px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-14">

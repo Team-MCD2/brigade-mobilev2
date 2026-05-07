@@ -9,24 +9,10 @@ import { BRANDS, type BrandId } from "@/lib/data/brands";
 import { getModelsByBrand } from "@/lib/data/models";
 import { siteConfig } from "@/lib/site-config";
 
-const SLUGS = [
-  "apple",
-  "samsung",
-  "huawei",
-  "xiaomi",
-  "google",
-  "oneplus",
-  "sony",
-  "microsoft",
-  "asus",
-  "nintendo",
-  "other",
-] as const;
-
 type Props = { params: Promise<{ brand: string }> };
 
 export function generateStaticParams() {
-  return SLUGS.map((brand) => ({ brand }));
+  return BRANDS.map((b) => ({ brand: b.id }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -9,6 +9,8 @@ export const REPAIR_IDS = [
   "desox",
   "software",
   "unlock",
+  "housing",
+  "network",
   "other",
 ] as const;
 
@@ -55,9 +57,19 @@ export const REPAIR_LABELS: Record<RepairId, { label: string; description: strin
     description:
       "Code oublié, compte Google/Apple selon politique, FRP — nous vérifions la preuve d’achat ; certaines protections ne sont pas contournables légalement.",
   },
+  housing: {
+    label: "Vitre arrière / châssis / coque",
+    description:
+      "Dos en verre fissuré, coque déformée après chute, cadre tordu, joints d’étanchéité à refaire — précisez iPhone avec vitre arrière séparée ou collée à la batterie.",
+  },
+  network: {
+    label: "Wi‑Fi / Bluetooth / réseau",
+    description:
+      "Wi‑Fi grisé ou lent, Bluetooth qui ne pair plus, perte de signal mobile (souvent après chute ou désoxydation) — indiquez si la 5G / 4G seule est touchée.",
+  },
   other: {
     label: "Autre panne",
     description:
-      "NFC, Bluetooth instable, capteur proximité, bouton volume/power, refroidissement, charnière, connectique HDMI — décrivez le symptôme précisément.",
+      "NFC, Face ID / capteurs, bouton volume/power, vibreur, refroidissement, charnière écran, connectique HDMI — décrivez le symptôme précisément.",
   },
 };
