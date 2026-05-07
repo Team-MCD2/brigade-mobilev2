@@ -34,23 +34,23 @@ export function MobileNav({ className }: { className?: string }) {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         className={cn(
-          "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-background transition-colors hover:bg-muted",
+          "inline-flex size-9 shrink-0 items-center justify-center rounded-sm border border-border bg-card text-foreground transition-colors hover:bg-muted",
           className,
         )}
         aria-label="Ouvrir le menu"
       >
         <Menu className="size-5" />
       </SheetTrigger>
-      <SheetContent side="right" className="flex flex-col gap-0 border-l border-border">
+      <SheetContent side="right" className="flex flex-col gap-0 border-l border-border bg-popover">
         <SheetHeader className="text-left">
-          <SheetTitle className="text-base font-semibold tracking-tight">{siteConfig.name}</SheetTitle>
-          <p className="font-num text-[11px] uppercase tracking-widest text-muted-foreground">Toulouse</p>
+          <SheetTitle className="font-heading text-xl font-normal tracking-tight text-foreground">{siteConfig.name}</SheetTitle>
+          <p className="font-num text-[10px] uppercase tracking-[0.35em] text-muted-foreground">{siteConfig.address.city}</p>
         </SheetHeader>
         <div className="mt-6 space-y-2">
           <Link
             href="/devis"
             onClick={() => setOpen(false)}
-            className="flex h-11 items-center justify-center gap-2 rounded-lg bg-primary text-sm font-medium text-primary-foreground"
+            className="flex h-11 items-center justify-center gap-2 rounded-sm bg-primary text-sm font-semibold uppercase tracking-wider text-primary-foreground"
           >
             <Sparkles className="size-4" aria-hidden />
             Devis en ligne
@@ -58,7 +58,7 @@ export function MobileNav({ className }: { className?: string }) {
           <a
             href={`tel:${siteConfig.contact.phoneE164.replace(/\s/g, "")}`}
             onClick={() => setOpen(false)}
-            className="flex h-11 items-center justify-center gap-2 rounded-lg border border-border text-sm font-medium"
+            className="flex h-11 items-center justify-center gap-2 rounded-sm border border-border bg-card text-sm font-medium"
           >
             <Phone className="size-4" aria-hidden />
             {siteConfig.contact.phoneDisplay}
@@ -75,7 +75,7 @@ export function MobileNav({ className }: { className?: string }) {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                    className="block rounded-sm px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                   >
                     {l.label}
                   </Link>
@@ -93,7 +93,7 @@ export function MobileNav({ className }: { className?: string }) {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                    className="block rounded-sm px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                   >
                     {l.label}
                   </Link>

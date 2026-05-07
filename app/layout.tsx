@@ -51,7 +51,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-dvh flex flex-col bg-background font-sans text-foreground antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col bg-background font-sans text-foreground antialiased`}
+      >
         <JsonLd data={localBusinessSchema()} />
         <TooltipProvider>
           <SiteHeader />

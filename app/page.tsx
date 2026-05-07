@@ -16,7 +16,6 @@ import {
 
 import { JsonLd } from "@/components/json-ld";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GOOGLE_REVIEWS } from "@/lib/data/googleReviews";
 import { siteConfig } from "@/lib/site-config";
@@ -67,101 +66,98 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={faqLd} />
-      {/* 1 Hero */}
+      {/* 1 Hero — asymétrique, pas carte centrée */}
       <section className="relative overflow-hidden border-b border-border">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.07)_1px,transparent_0)] [background-size:20px_20px]"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.06)_1px,transparent_0)] [background-size:20px_20px]"
         />
-        <div className="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 sm:py-28 lg:py-32">
-          <Badge variant="outline" className="rounded-full px-3 py-1 font-num text-[11px] uppercase tracking-widest">
-            Atelier · {siteConfig.address.city}
-          </Badge>
-          <h1 className="mt-8 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
-            Un devis lisible.
-            <br />
-            <span className="text-muted-foreground">Une réparation qui tient la route.</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Devis guidé en ligne, diagnostic gratuit en boutique, garantie{" "}
-            <span className="font-num text-foreground">{siteConfig.stats.warrantyMonths} mois</span>. Un parcours simple,
-            pensé comme un logiciel — sans jargon inutile.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="rounded-lg px-6">
-              <Link href="/devis">
-                <Sparkles className="size-4" aria-hidden />
-                Obtenir mon devis
-                <ArrowRight className="size-4 opacity-70" aria-hidden />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-lg px-6">
-              <Link href="/boutique">
-                <MapPin className="size-4" aria-hidden />
-                Boutique
-              </Link>
-            </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2">
-              <span className="flex" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="size-4 fill-rating-star text-rating-star" />
-                ))}
+        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
+          <div className="max-w-3xl border-l-4 border-primary pl-6 sm:pl-10">
+            <p className="font-num text-[10px] font-semibold uppercase tracking-[0.4em] text-primary">Atelier · {siteConfig.address.city}</p>
+            <h1 className="font-heading mt-6 text-4xl font-normal leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
+              On lit le problème.
+              <span className="mt-2 block text-muted-foreground">On cite le prix. On répare.</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Diagnostic gratuit en boutique, devis guidé en ligne, garantie{" "}
+              <span className="font-num text-foreground">{siteConfig.stats.warrantyMonths} mois</span> — sans promesse
+              creuse ni jargon marketing.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Button asChild size="lg" className="rounded-sm px-8 uppercase tracking-wider">
+                <Link href="/devis">
+                  <Sparkles className="size-4" aria-hidden />
+                  Devis
+                  <ArrowRight className="size-4 opacity-80" aria-hidden />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-sm border-primary/50 px-8 uppercase tracking-wider">
+                <Link href="/boutique">
+                  <MapPin className="size-4" aria-hidden />
+                  Adresse
+                </Link>
+              </Button>
+            </div>
+            <div className="mt-12 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-2">
+                <span className="flex" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-4 fill-rating-star text-rating-star" />
+                  ))}
+                </span>
+                <span className="font-num text-foreground">{siteConfig.stats.rating}/5</span>
+                <span className="text-border">|</span>
+                <span className="font-num">{siteConfig.stats.reviewCount}+ avis</span>
               </span>
-              <span className="font-num font-medium text-foreground">{siteConfig.stats.rating}/5</span>
-              <span>· {siteConfig.stats.reviewCount}+ avis</span>
-            </span>
-            <span className="font-num text-xs uppercase tracking-wider">{siteConfig.address.transit}</span>
+              <span className="font-num text-xs uppercase tracking-[0.25em]">{siteConfig.address.transit}</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2 Brands */}
-      <section className="border-b border-border bg-muted/40 py-8">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 sm:px-6">
-          {brands.map((b) => (
-            <Link
-              key={b.name}
-              href={b.href}
-              className="font-num text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {b.name}
-            </Link>
+      {/* 2 Marques — bandeau typographique */}
+      <section className="border-b border-border bg-muted/50 py-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 px-4 font-num text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground sm:px-6 sm:gap-x-5">
+          {brands.map((b, i) => (
+            <span key={b.name} className="inline-flex items-center gap-x-3 sm:gap-x-5">
+              {i > 0 ? <span className="text-border" aria-hidden>/</span> : null}
+              <Link href={b.href} className="text-foreground/90 transition-colors hover:text-primary">
+                {b.name}
+              </Link>
+            </span>
           ))}
-          <Link
-            href="/devis"
-            className="font-num text-sm font-medium uppercase tracking-[0.2em] text-primary hover:underline"
-          >
-            Autre →
-          </Link>
+          <span className="inline-flex items-center gap-x-3 sm:gap-x-5">
+            <span className="text-border" aria-hidden>/</span>
+            <Link href="/devis" className="text-primary hover:underline">
+              Autre
+            </Link>
+          </span>
         </div>
       </section>
 
-      {/* 3 Services — liste éditoriale (pas bento / pastilles bleues) */}
-      <section className="border-y border-border bg-muted/20">
+      {/* 3 Services — colonne + liste */}
+      <section className="border-y border-border bg-muted/25">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start">
             <div>
-              <p className="font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-                Périmètre
-              </p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-                Ce qu&apos;on répare, sans catalogue gadget.
+              <p className="font-num text-[10px] font-semibold uppercase tracking-[0.35em] text-primary">Périmètre</p>
+              <h2 className="font-heading mt-5 text-3xl tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
+                Ce qu&apos;on touche, au quotidien.
               </h2>
-              <p className="mt-5 max-w-md text-muted-foreground">
-                Pas de pastilles colorées ni de grille «&nbsp;app store&nbsp;» — juste des lignes claires vers les fiches utiles.
+              <p className="mt-6 max-w-md text-muted-foreground">
+                Pas d&apos;icônes «&nbsp;appli&nbsp;» — des liens vers des fiches utiles, point.
               </p>
               <Link
                 href="/services"
-                className="mt-8 inline-flex items-center gap-2 font-num text-sm font-medium text-foreground underline decoration-foreground/30 underline-offset-8 hover:decoration-foreground"
+                className="mt-10 inline-flex items-center gap-2 font-num text-xs font-semibold uppercase tracking-[0.2em] text-primary hover:underline"
               >
-                Index complet des services
+                Tout l&apos;index
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
 
-            <nav className="flex flex-col border-t border-border lg:border-t-0 lg:border-l lg:pl-12 lg:pt-0" aria-label="Services phares">
+            <nav className="flex flex-col border-t border-border lg:border-t-0 lg:border-l lg:border-border lg:pl-12 lg:pt-0" aria-label="Services phares">
               {[
                 {
                   href: "/services/ecran-iphone-toulouse",
@@ -191,17 +187,17 @@ export default function HomePage() {
                 <Link
                   key={row.href}
                   href={row.href}
-                  className="group grid grid-cols-[auto_1fr_auto] gap-x-5 gap-y-1 border-b border-border py-6 first:border-t-0 lg:first:border-t lg:pt-0"
+                  className="group grid grid-cols-[auto_1fr_auto] gap-x-5 gap-y-1 border-b border-border py-7 first:border-t-0 lg:first:border-t lg:pt-0"
                 >
-                  <span className="font-num text-xs font-medium tabular-nums text-muted-foreground">{row.code}</span>
+                  <span className="font-num text-[10px] font-medium tabular-nums uppercase tracking-wider text-primary">
+                    {row.code}
+                  </span>
                   <div className="min-w-0">
-                    <p className="font-semibold tracking-tight text-foreground group-hover:underline group-hover:decoration-foreground/25 group-hover:underline-offset-4">
-                      {row.title}
-                    </p>
-                    <p className="mt-1 text-sm text-muted-foreground">{row.desc}</p>
+                    <p className="font-heading text-lg tracking-tight text-foreground group-hover:text-primary">{row.title}</p>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{row.desc}</p>
                   </div>
                   <ArrowRight
-                    className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
+                    className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
                     aria-hidden
                   />
                 </Link>
@@ -211,23 +207,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4 Process */}
-      <section className="border-y border-border bg-muted/30 py-20">
+      {/* 4 Parcours — timeline verticale */}
+      <section className="border-y border-border bg-background py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Parcours</p>
-          <h2 className="mt-3 max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">Trois étapes, aucune zone grise.</h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <p className="font-num text-[10px] font-semibold uppercase tracking-[0.35em] text-primary">Déroulé</p>
+          <h2 className="font-heading mt-4 max-w-xl text-3xl tracking-tight sm:text-4xl">Trois temps. Zéro flou.</h2>
+          <ol className="mt-14 max-w-2xl space-y-12">
             {[
               {
                 n: "01",
                 title: "Vous décrivez",
-                desc: "Devis en ligne ou passage boutique — même logique, même transparence.",
+                desc: "Devis en ligne ou passage boutique — même transparence.",
                 Icon: MessageSquare,
               },
               {
                 n: "02",
                 title: "On diagnostique",
-                desc: "Gratuit, sous vos yeux — prix ferme avant toute intervention.",
+                desc: "Gratuit, sous vos yeux — prix ferme avant intervention.",
                 Icon: Search,
               },
               {
@@ -236,81 +232,78 @@ export default function HomePage() {
                 desc: `Souvent ~${siteConfig.stats.repairMinutes} min · garantie ${siteConfig.stats.warrantyMonths} mois.`,
                 Icon: ShieldCheck,
               },
-            ].map((step) => (
-              <div
-                key={step.n}
-                className="relative overflow-hidden rounded-xl border border-border bg-background p-8 transition-shadow hover:shadow-sm"
-              >
-                <span className="font-num pointer-events-none absolute -right-1 -top-2 text-7xl font-bold text-primary/10">
-                  {step.n}
-                </span>
-                <step.Icon className="relative size-6 text-primary" aria-hidden />
-                <h3 className="relative mt-6 text-lg font-semibold">{step.title}</h3>
-                <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
-              </div>
+            ].map((step, i, arr) => (
+              <li key={step.n} className="flex gap-6 sm:gap-8">
+                <div className="flex flex-col items-center">
+                  <span className="font-num flex size-10 shrink-0 items-center justify-center border-2 border-primary bg-background text-[10px] font-bold text-primary">
+                    {step.n}
+                  </span>
+                  {i < arr.length - 1 ? <span className="mt-2 w-px grow min-h-[2.5rem] bg-primary/40" aria-hidden /> : null}
+                </div>
+                <div className="min-w-0 pb-2">
+                  <step.Icon className="size-5 text-primary" aria-hidden />
+                  <h3 className="font-heading mt-2 text-xl tracking-tight">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* 5 Why + testimonial */}
+      {/* 5 Pourquoi + avis — grille serrée, citation mise en exergue */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
-          <div className="lg:col-span-2">
-            <p className="font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-              Pourquoi nous
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">L&apos;agilité d&apos;un atelier local, la rigueur d&apos;un produit SaaS.</h2>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-12 lg:grid-cols-5 lg:gap-10">
+          <div className="lg:col-span-3">
+            <p className="font-num text-[10px] font-semibold uppercase tracking-[0.35em] text-primary">Terrain</p>
+            <h2 className="font-heading mt-4 text-3xl tracking-tight sm:text-4xl">Vitesse, clarté, garantie — sans slide PowerPoint.</h2>
+            <ul className="mt-10 grid gap-6 sm:grid-cols-2">
               {[
                 { t: "Rapide", d: `Interventions courantes en ~${siteConfig.stats.repairMinutes} min.`, Icon: Clock },
                 { t: "Transparent", d: "Prix indicatif en ligne, diagnostic gratuit pour figer le montant.", Icon: CheckCircle2 },
                 { t: "Garanti", d: `${siteConfig.stats.warrantyMonths} mois pièces & main d'œuvre.`, Icon: Shield },
-                { t: "Polyvalent", d: "MacBook, PC, tablettes — voir la page Services.", Icon: Laptop },
+                { t: "Polyvalent", d: "MacBook, PC, tablettes — voir Services.", Icon: Laptop },
               ].map((b) => (
-                <div
-                  key={b.t}
-                  className="rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/10"
-                >
-                  <b.Icon className="size-5 text-primary" aria-hidden />
-                  <p className="mt-3 font-semibold">{b.t}</p>
+                <li key={b.t} className="border-l-2 border-primary/40 pl-5">
+                  <b.Icon className="size-4 text-primary" aria-hidden />
+                  <p className="font-heading mt-3 text-lg tracking-tight">{b.t}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{b.d}</p>
-                </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <aside className="flex flex-col border border-primary/30 bg-muted/30 p-8 lg:col-span-2">
+            <div className="flex gap-0.5" aria-label="5 étoiles" role="img">
+              {Array.from({ length: featured.rating }).map((_, i) => (
+                <Star key={i} className="size-4 fill-rating-star text-rating-star" />
               ))}
             </div>
-          </div>
-          <aside className="flex flex-col justify-between rounded-xl border border-border bg-muted/40 p-8">
-            <div>
-              <div className="flex gap-0.5" aria-label="5 étoiles" role="img">
-                {Array.from({ length: featured.rating }).map((_, i) => (
-                  <Star key={i} className="size-4 fill-rating-star text-rating-star" />
-                ))}
-              </div>
-              <blockquote className="mt-5 text-base leading-relaxed text-foreground">&ldquo;{featured.text}&rdquo;</blockquote>
-              <p className="mt-6 text-sm font-medium">{featured.author}</p>
-              <p className="font-num text-xs uppercase tracking-wider text-muted-foreground">Avis Google</p>
-            </div>
+            <blockquote className="font-heading mt-6 text-xl leading-snug tracking-tight text-foreground">
+              &ldquo;{featured.text}&rdquo;
+            </blockquote>
+            <p className="mt-8 text-sm font-medium text-foreground">{featured.author}</p>
+            <p className="font-num mt-1 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Google</p>
             <Button asChild variant="link" className="mt-8 h-auto justify-start px-0 text-primary">
               <Link href="/avis">
-                Tous les avis <ArrowRight className="size-4" aria-hidden />
+                Lire les avis <ArrowRight className="size-4" aria-hidden />
               </Link>
             </Button>
           </aside>
         </div>
       </section>
 
-      {/* 6 Stats */}
-      <section className="border-y border-border bg-background">
-        <div className="mx-auto grid max-w-6xl divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+      {/* 6 Chiffres — bandeau inversé */}
+      <section className="border-y border-border bg-primary text-primary-foreground">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-primary-foreground/20 lg:grid-cols-4">
           {[
-            { v: `~${siteConfig.stats.repairMinutes} min`, l: "Réparation express" },
+            { v: `~${siteConfig.stats.repairMinutes} min`, l: "Intervention" },
             { v: `${siteConfig.stats.warrantyMonths} mois`, l: "Garantie" },
-            { v: `${siteConfig.stats.rating}/5`, l: "Note Google" },
-            { v: `${siteConfig.stats.reviewCount}+`, l: "Retours clients" },
+            { v: `${siteConfig.stats.rating}/5`, l: "Note" },
+            { v: `${siteConfig.stats.reviewCount}+`, l: "Avis" },
           ].map((s) => (
-            <div key={s.l} className="flex flex-col items-center px-6 py-8 text-center">
-              <span className="font-num text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{s.v}</span>
-              <span className="mt-2 font-num text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+            <div key={s.l} className="bg-primary px-6 py-10 sm:px-8">
+              <span className="font-num text-3xl font-semibold tracking-tight sm:text-4xl">{s.v}</span>
+              <span className="mt-2 block font-num text-[10px] font-medium uppercase tracking-[0.35em] text-primary-foreground/75">
                 {s.l}
               </span>
             </div>
@@ -320,48 +313,44 @@ export default function HomePage() {
 
       {/* 7 FAQ */}
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-        <p className="text-center font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-          FAQ
-        </p>
-        <h2 className="mt-3 text-center text-3xl font-bold tracking-tight sm:text-4xl">Réponses courtes, impact direct.</h2>
-        <Accordion className="mt-10 w-full divide-y divide-border border-y border-border">
+        <div className="border-l-4 border-primary pl-6 sm:pl-8">
+          <p className="font-num text-[10px] font-semibold uppercase tracking-[0.35em] text-primary">FAQ</p>
+          <h2 className="font-heading mt-4 text-3xl tracking-tight sm:text-4xl">Les questions qu&apos;on nous pose le plus.</h2>
+        </div>
+        <Accordion className="mt-12 w-full border-y border-border">
           {homeFaqs.map((f, i) => (
-            <AccordionItem key={i} value={`h-${i}`} className="border-0">
-              <AccordionTrigger className="py-5 text-left text-base font-semibold hover:no-underline">
+            <AccordionItem key={i} value={`h-${i}`} className="border-border">
+              <AccordionTrigger className="py-5 text-left font-sans text-base font-medium hover:no-underline">
                 {f.q}
               </AccordionTrigger>
-              <AccordionContent className="pb-5 text-muted-foreground">{f.a}</AccordionContent>
+              <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="mt-8 text-center">
-          <Button asChild variant="outline" className="rounded-lg">
+        <div className="mt-8">
+          <Button asChild variant="outline" className="rounded-sm border-primary/50 uppercase tracking-wider">
             <Link href="/faq">
-              Toute la FAQ <ArrowRight className="size-4" aria-hidden />
+              Suite <ArrowRight className="size-4" aria-hidden />
             </Link>
           </Button>
         </div>
       </section>
 
       {/* 8 CTA */}
-      <section className="border-t border-border bg-primary/[0.05]">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 py-16 text-center sm:px-6 lg:flex-row lg:justify-between lg:text-left">
+      <section className="border-t border-border bg-muted/40">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-16 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Prêt à clarifier le coût de votre réparation&nbsp;?
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Le devis prend moins de deux minutes — ou passez directement en boutique.
-            </p>
+            <h2 className="font-heading text-balance text-3xl tracking-tight sm:text-4xl">Un chiffre avant d&apos;ouvrir le capot.</h2>
+            <p className="mt-4 text-muted-foreground">Deux minutes en ligne — ou passez sans rendez-vous pour le diagnostic.</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" className="rounded-lg px-6">
+          <div className="flex flex-wrap gap-3">
+            <Button asChild size="lg" className="rounded-sm px-8 uppercase tracking-wider">
               <Link href="/devis">
                 <Sparkles className="size-4" aria-hidden />
                 Devis
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-lg px-6">
+            <Button asChild size="lg" variant="outline" className="rounded-sm border-primary/50 px-8 uppercase tracking-wider">
               <a href={`tel:${siteConfig.contact.phoneE164}`}>
                 <Phone className="size-4" aria-hidden />
                 <span className="font-num">{siteConfig.contact.phoneDisplay}</span>

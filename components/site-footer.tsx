@@ -31,19 +31,19 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-border bg-background">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-start gap-4">
             <span className="relative size-11 shrink-0">
               <Image
                 src="/images/logo-transparent.png"
                 alt={siteConfig.name}
                 fill
-                className="object-contain"
+                className="object-contain object-left"
                 sizes="44px"
               />
             </span>
             <div>
-              <p className="text-sm font-semibold tracking-tight">{siteConfig.name}</p>
-              <p className="mt-1 max-w-xs text-sm leading-relaxed text-muted-foreground">{siteConfig.tagline}</p>
+              <p className="font-heading text-lg tracking-tight text-foreground">{siteConfig.name}</p>
+              <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">{siteConfig.tagline}</p>
             </div>
           </div>
           <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">

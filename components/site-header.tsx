@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Keyboard, Phone, Sparkles } from "lucide-react";
+import { Phone } from "lucide-react";
 
 import { MobileNav } from "@/components/mobile-nav";
 import { Button } from "@/components/ui/button";
@@ -24,68 +24,68 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.25rem] sm:px-6">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <span className="relative size-11 shrink-0 sm:size-12">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
+      <div className="mx-auto flex max-w-6xl items-stretch justify-between gap-4 px-4 sm:px-6">
+        <Link href="/" className="flex min-w-0 flex-col justify-center gap-1 py-4 sm:flex-row sm:items-center sm:gap-4 sm:py-0">
+          <span className="relative size-10 shrink-0 sm:size-11">
             <Image
               src="/images/logo-transparent.png"
               alt={siteConfig.name}
               fill
-              className="object-contain"
-              sizes="48px"
+              className="object-contain object-left"
+              sizes="44px"
               priority
             />
           </span>
-          <span className="hidden flex-col sm:flex">
-            <span className="text-sm font-semibold tracking-tight text-foreground">{siteConfig.name}</span>
-            <span className="font-num text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Toulouse</span>
-          </span>
+          <div className="min-w-0 sm:border-l sm:border-border sm:pl-4">
+            <span className="font-heading block text-lg leading-none tracking-tight text-foreground sm:text-xl">{siteConfig.name}</span>
+            <span className="font-num mt-1 block text-[10px] uppercase tracking-[0.35em] text-muted-foreground">{siteConfig.address.city}</span>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm text-muted-foreground hover:bg-transparent hover:text-foreground data-[state=open]:bg-transparent data-[state=open]:text-foreground">
+        <nav className="hidden items-stretch lg:flex">
+          <NavigationMenu className="max-w-none">
+            <NavigationMenuList className="flex h-full flex-1 items-stretch gap-0">
+              <NavigationMenuItem className="flex">
+                <NavigationMenuTrigger className="h-auto rounded-none border-x border-transparent bg-transparent px-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground hover:bg-muted/60 hover:text-foreground data-[state=open]:border-border data-[state=open]:bg-muted/40 data-[state=open]:text-foreground">
                   Réparations
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[300px] gap-0.5 p-2 sm:w-[400px] sm:grid-cols-2">
-                    <li className="col-span-2">
+                <NavigationMenuContent className="left-0 right-auto mt-0 w-[min(100vw-2rem,28rem)] border border-border bg-popover p-0 shadow-none">
+                  <ul className="divide-y divide-border">
+                    <li>
                       <NavigationMenuLink
                         render={<Link href="/reparations/apple" />}
-                        className="block rounded-md p-3 text-sm font-medium transition-colors hover:bg-muted"
+                        className="block px-5 py-4 text-sm transition-colors hover:bg-muted/50"
                       >
-                        <div className="font-semibold">Apple</div>
-                        <p className="mt-0.5 text-xs text-muted-foreground">iPhone, iPad, MacBook, iMac</p>
+                        <div className="font-heading text-base text-foreground">Apple</div>
+                        <p className="mt-1 text-xs text-muted-foreground">iPhone, iPad, MacBook, iMac</p>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink
                         render={<Link href="/reparations/samsung" />}
-                        className="block rounded-md p-3 text-sm transition-colors hover:bg-muted"
+                        className="block px-5 py-4 text-sm transition-colors hover:bg-muted/50"
                       >
-                        <div className="font-medium">Samsung Galaxy</div>
+                        <div className="font-heading text-base text-foreground">Samsung Galaxy</div>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink
                         render={<Link href="/devis" />}
-                        className="block rounded-md p-3 text-sm transition-colors hover:bg-muted"
+                        className="block px-5 py-4 text-sm transition-colors hover:bg-muted/50"
                       >
-                        <div className="font-medium">Autre marque</div>
-                        <p className="mt-0.5 text-xs text-muted-foreground">Devis guidé</p>
+                        <div className="font-heading text-base text-foreground">Autre marque</div>
+                        <p className="mt-1 text-xs text-muted-foreground">Devis guidé</p>
                       </NavigationMenuLink>
                     </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               {nav.map((item) => (
-                <NavigationMenuItem key={item.href}>
+                <NavigationMenuItem key={item.href} className="flex">
                   <NavigationMenuLink
                     render={<Link href={item.href} />}
-                    className="inline-flex h-9 items-center justify-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className="inline-flex items-center border-x border-transparent px-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-border hover:bg-muted/40 hover:text-foreground"
                   >
                     {item.label}
                   </NavigationMenuLink>
@@ -93,26 +93,16 @@ export function SiteHeader() {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <span
-            className="ml-2 hidden items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] text-muted-foreground xl:inline-flex"
-            aria-hidden
-          >
-            <Keyboard className="size-3 opacity-60" />
-            <span className="font-num">⌘K</span>
-          </span>
         </nav>
 
-        <div className="flex items-center gap-1.5">
-          <Button asChild variant="ghost" size="icon-sm" className="hidden md:inline-flex" aria-label="Appeler">
+        <div className="flex items-center gap-2 py-3">
+          <Button asChild variant="ghost" size="icon-sm" className="hidden rounded-none md:inline-flex" aria-label="Appeler">
             <a href={`tel:${siteConfig.contact.phoneE164.replace(/\s/g, "")}`}>
               <Phone className="size-4" />
             </a>
           </Button>
-          <Button asChild size="sm" className="hidden sm:inline-flex">
-            <Link href="/devis">
-              <Sparkles className="size-4" />
-              Devis
-            </Link>
+          <Button asChild size="sm" className="hidden rounded-none px-5 text-xs font-semibold uppercase tracking-[0.18em] sm:inline-flex">
+            <Link href="/devis">Devis</Link>
           </Button>
           <MobileNav className="lg:hidden" />
         </div>
