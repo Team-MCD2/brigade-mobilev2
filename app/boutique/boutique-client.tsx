@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { Bus, Clock, MapPin, Navigation, Phone, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";

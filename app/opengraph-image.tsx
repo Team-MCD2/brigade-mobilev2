@@ -37,7 +37,7 @@ export default function OpengraphImage() {
               width: 56,
               height: 56,
               borderRadius: 12,
-              background: "oklch(0.55 0.16 245)",
+              background: "#3d6ee8",
             }}
           />
           <span style={{ fontSize: 18, color: "#737373", letterSpacing: "0.12em", textTransform: "uppercase" }}>
@@ -55,7 +55,7 @@ export default function OpengraphImage() {
             marginTop: 48,
             fontSize: 20,
             fontFamily: "ui-monospace, monospace",
-            color: "oklch(0.55 0.16 245)",
+            color: "#3d6ee8",
           }}
         >
           Devis en ligne · Diagnostic gratuit · Garantie {siteConfig.stats.warrantyMonths} mois

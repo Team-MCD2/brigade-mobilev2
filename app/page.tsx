@@ -1,10 +1,8 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Cable,
   CheckCircle2,
   Clock,
-  Droplets,
   Laptop,
   MapPin,
   MessageSquare,
@@ -12,7 +10,6 @@ import {
   Search,
   Shield,
   ShieldCheck,
-  Smartphone,
   Sparkles,
   Star,
 } from "lucide-react";
@@ -81,9 +78,9 @@ export default function HomePage() {
             Atelier · {siteConfig.address.city}
           </Badge>
           <h1 className="mt-8 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
-            Réparez avec une{" "}
-            <span className="text-primary">vision produit</span>
-            <br className="hidden sm:block" /> claire sur le prix.
+            Un devis lisible.
+            <br />
+            <span className="text-muted-foreground">Une réparation qui tient la route.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Devis guidé en ligne, diagnostic gratuit en boutique, garantie{" "}
@@ -141,64 +138,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3 Bento */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-2xl">
-          <p className="font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Services</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Une grille claire, une prise en charge nette.</h2>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3 md:grid-rows-2">
-          <Link
-            href="/services/ecran-iphone-toulouse"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-0.5 hover:border-foreground/15 md:col-span-2 md:row-span-2"
-          >
+      {/* 3 Services — liste éditoriale (pas bento / pastilles bleues) */}
+      <section className="border-y border-border bg-muted/20">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start">
             <div>
-              <div className="inline-flex size-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Smartphone className="size-6" aria-hidden />
-              </div>
-              <h3 className="mt-6 text-2xl font-semibold tracking-tight sm:text-3xl">Smartphones &amp; tablettes</h3>
-              <p className="mt-3 max-w-md text-muted-foreground">
-                Écran, batterie, caméra, connecteur, désoxydation — toute la gamme en atelier, pièces contrôlées.
+              <p className="font-num text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Périmètre
               </p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+                Ce qu&apos;on répare, sans catalogue gadget.
+              </h2>
+              <p className="mt-5 max-w-md text-muted-foreground">
+                Pas de pastilles colorées ni de grille «&nbsp;app store&nbsp;» — juste des lignes claires vers les fiches utiles.
+              </p>
+              <Link
+                href="/services"
+                className="mt-8 inline-flex items-center gap-2 font-num text-sm font-medium text-foreground underline decoration-foreground/30 underline-offset-8 hover:decoration-foreground"
+              >
+                Index complet des services
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
             </div>
-            <span className="mt-8 inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Voir la fiche écran iPhone
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </span>
-          </Link>
-          <Link
-            href="/services/connecteur-charge"
-            className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/15"
-          >
-            <div>
-              <Cable className="size-8 text-primary" aria-hidden />
-              <h3 className="mt-4 text-lg font-semibold">Connecteur &amp; charge</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Port usé, charge intermittente.</p>
-            </div>
-            <ArrowRight className="mt-4 size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-          </Link>
-          <Link
-            href="/services/desoxydation-eau"
-            className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/15"
-          >
-            <div>
-              <Droplets className="size-8 text-primary" aria-hidden />
-              <h3 className="mt-4 text-lg font-semibold">Désoxydation</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Contact avec l&apos;eau — agir vite.</p>
-            </div>
-            <ArrowRight className="mt-4 size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-          </Link>
-          <Link
-            href="/devis"
-            className="group flex flex-col justify-between rounded-xl border border-dashed border-border bg-muted/30 p-6 transition-all hover:-translate-y-0.5 hover:border-primary/50"
-          >
-            <div>
-              <Search className="size-8 text-primary" aria-hidden />
-              <h3 className="mt-4 text-lg font-semibold">Diagnostic gratuit</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Sans engagement — devis clair sur place.</p>
-            </div>
-            <ArrowRight className="mt-4 size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-          </Link>
+
+            <nav className="flex flex-col border-t border-border lg:border-t-0 lg:border-l lg:pl-12 lg:pt-0" aria-label="Services phares">
+              {[
+                {
+                  href: "/services/ecran-iphone-toulouse",
+                  title: "Smartphones & tablettes",
+                  desc: "Écran, batterie, caméra, connecteur, désoxydation — atelier, pièces contrôlées.",
+                  code: "01",
+                },
+                {
+                  href: "/services/connecteur-charge",
+                  title: "Connecteur & charge",
+                  desc: "Port usé, charge intermittente.",
+                  code: "02",
+                },
+                {
+                  href: "/services/desoxydation-eau",
+                  title: "Désoxydation",
+                  desc: "Contact avec l&apos;eau — agir vite.",
+                  code: "03",
+                },
+                {
+                  href: "/devis",
+                  title: "Diagnostic gratuit",
+                  desc: "Sans engagement — devis clair sur place ou en ligne.",
+                  code: "04",
+                },
+              ].map((row) => (
+                <Link
+                  key={row.href}
+                  href={row.href}
+                  className="group grid grid-cols-[auto_1fr_auto] gap-x-5 gap-y-1 border-b border-border py-6 first:border-t-0 lg:first:border-t lg:pt-0"
+                >
+                  <span className="font-num text-xs font-medium tabular-nums text-muted-foreground">{row.code}</span>
+                  <div className="min-w-0">
+                    <p className="font-semibold tracking-tight text-foreground group-hover:underline group-hover:decoration-foreground/25 group-hover:underline-offset-4">
+                      {row.title}
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">{row.desc}</p>
+                  </div>
+                  <ArrowRight
+                    className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
+                    aria-hidden
+                  />
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
       </section>
 
