@@ -146,7 +146,7 @@ export default function HomePage() {
           </span>
         </div>
         <p className="mx-auto mt-4 max-w-2xl px-4 text-center text-xs text-muted-foreground sm:text-sm">
-          Montres, drones, photo, trottinettes, PC… — même parcours sur{" "}
+          Consoles, PC portables, autres appareils électroniques… — même parcours sur{" "}
           <Link href="/devis" className="font-medium text-primary underline underline-offset-2 hover:no-underline">
             le devis en ligne
           </Link>

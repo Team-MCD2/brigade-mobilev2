@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "Quelles marques réparez-vous ?",
-    a: "Apple (iPhone, iPad, Mac), Samsung Galaxy, Huawei, Xiaomi, Google Pixel, Oppo, OnePlus, Sony, Microsoft Surface, Asus, Nintendo Switch — et la plupart des autres marques smartphone, tablette ou PC via le devis en ligne.",
+    a: "Apple (iPhone, iPad, Mac), Samsung Galaxy, Huawei, Xiaomi, Google Pixel, Oppo, OnePlus, Sony (Xperia & PlayStation), Microsoft Surface & Xbox, Asus, Nintendo Switch — et la plupart des autres marques smartphone, tablette ou PC via le devis en ligne.",
   },
   {
     q: "Faites-vous les MacBook, iMac et PC ?",
