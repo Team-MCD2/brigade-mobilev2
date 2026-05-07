@@ -102,6 +102,6 @@ export const useDevisStore = create<DevisState>()(
           contact: { ...initialContact },
         }),
     }),
-    { name: "brigade-devis-v1" },
+    { name: "brigade-devis-v2" },
   ),
 );

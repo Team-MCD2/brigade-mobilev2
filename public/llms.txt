@@ -1,0 +1,32 @@
+# La Brigade Mobile — résumé pour assistants / IA
+
+## Qui sommes-nous ?
+Atelier de réparation smartphone, tablette et ordinateur à Toulouse (65 Route de Blagnac, 31300). Anciennement présenté sous le nom « ReparePhone » sur la V1 — transition vers la marque « La Brigade Mobile » avec une identité visuelle épurée bleu/jaune.
+
+## Accès
+- Métro L1 & Bus 70 — arrêt « Cité Madrid », juste en face
+- Téléphone : 07 56 91 65 93
+- Email (fictif démo) : devis@labrigademobile.fr
+
+## Promesses clés
+- Réparation express ~30 min en boutique
+- Garantie 6 mois
+- Diagnostic gratuit
+- Note moyenne 4,9/5 (200+ avis — à synchroniser Google Business)
+
+## Devis en ligne
+URL : /devis — parcours multi-étapes (choix appareil → panne → mode boutique/domicile/postal → créneau → prix indicatif « à partir de »).
+
+## Services
+Écran, batterie, caméra, connecteur, désoxydation, logiciel, déblocage — smartphones (Apple, Samsung, etc.), MacBook/iMac, PC Windows/Linux, tablettes, smartwatches.
+
+## Horaires
+Lun–Ven 9h–19h, Sam 10h–18h, dimanche fermé.
+
+## Liens utiles
+- Boutique & carte : /boutique
+- Services SEO : /services
+- FAQ : /faq
+
+## Mentions
+Les prix en ligne sont indicatifs ; le devis ferme après diagnostic gratuit.
