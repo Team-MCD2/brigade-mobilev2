@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, Bus, Clock, MapPin, Navigation, Phone, Sparkles } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Bus, Clock, MapPin, Navigation, Phone, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
