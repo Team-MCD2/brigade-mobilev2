@@ -15,13 +15,49 @@ export const REPAIR_IDS = [
 export type RepairId = (typeof REPAIR_IDS)[number];
 
 export const REPAIR_LABELS: Record<RepairId, { label: string; description: string }> = {
-  screen: { label: "Écran / vitre / tactile", description: "Casse, lignes, taches, tactile mort" },
-  battery: { label: "Batterie", description: "Autonomie faible, gonflement, ne charge plus" },
-  camera: { label: "Caméra", description: "Flou, noir, impossible d'ouvrir l'appareil photo" },
-  chargePort: { label: "Connecteur de charge", description: "Charge intermittente, port abîmé" },
-  speaker: { label: "Haut-parleur / micro", description: "Pas de son, son distordu, micro HS" },
-  desox: { label: "Désoxydation (liquide)", description: "Oxydation après contact avec l'eau" },
-  software: { label: "Logiciel / système", description: "Blocages, bootloop, restauration" },
-  unlock: { label: "Déblocage", description: "Mot de passe oublié, FRP (sous conditions)" },
-  other: { label: "Autre panne", description: "Précisez dans les notes" },
+  screen: {
+    label: "Écran / vitre / tactile",
+    description:
+      "Casse, rayures profondes, taches noires ou vertes, lignes fixes, tactile partiel ou mort, halo ou décollement (OLED). Précisez face avant uniquement ou aussi vitre arrière.",
+  },
+  battery: {
+    label: "Batterie",
+    description:
+      "Autonomie effondrée, extinction brutale sous 20 %, gonflement de coque, message « Service batterie », ne tient plus la charge ou charge très lentement alors que le port est sain.",
+  },
+  camera: {
+    label: "Caméra",
+    description:
+      "Appareil photo noir, flou permanent, focus impossible, flash HS, caméra avant ou arrière seulement — indiquez laquelle dans les notes si vous savez.",
+  },
+  chargePort: {
+    label: "Connecteur de charge",
+    description:
+      "USB-C / Lightning / jack : jeu excessif, charge aléatoire selon l’angle, reconnaissance intermittente PC, pas de charge rapide. Indiquez chargeur d’origine ou tiers.",
+  },
+  speaker: {
+    label: "Haut-parleur / micro / audio",
+    description:
+      "Son distordu, volume faible, grésillement, micro inaudible en appel, haut-parleur du bas HS, pas de vibreur — précisez haut-parleur ou micro dans les notes.",
+  },
+  desox: {
+    label: "Désoxydation (liquide)",
+    description:
+      "Après eau, café, lessive, humidité soudaine. Même si l’appareil « sèche » et rallume, l’oxydation progresse — indiquez le liquide et depuis combien de temps.",
+  },
+  software: {
+    label: "Logiciel / système",
+    description:
+      "Bootloop, restauration impossible, mise à jour bloquée, compte à retirer (sous conditions légales), réinstallation propre, données à sauver avant intervention.",
+  },
+  unlock: {
+    label: "Déblocage / mot de passe",
+    description:
+      "Code oublié, compte Google/Apple selon politique, FRP — nous vérifions la preuve d’achat ; certaines protections ne sont pas contournables légalement.",
+  },
+  other: {
+    label: "Autre panne",
+    description:
+      "NFC, Bluetooth instable, capteur proximité, bouton volume/power, refroidissement, charnière, connectique HDMI — décrivez le symptôme précisément.",
+  },
 };

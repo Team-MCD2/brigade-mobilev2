@@ -10,25 +10,29 @@ export const PICKUP_MODE_META: Record<
 > = {
   boutique: {
     title: "Dépôt en boutique",
-    description: "Venez à l'atelier — créneau ~30 min, diagnostic gratuit sur place.",
+    description:
+      "65 Route de Blagnac — diagnostic gratuit sur place, souvent réparation le jour même pour écran / batterie / connecteur. Sans rendez-vous pour le diagnostic ; créneau pour reprise si besoin.",
     priceEuro: 0,
     durationHint: "Souvent le jour même",
   },
   domicile_intra: {
     title: "Retrait à domicile — Toulouse intra-rocade",
-    description: "Nous récupérons votre appareil à votre adresse (zone intra-rocade).",
+    description:
+      "Nous venons récupérer l’appareil à votre adresse (périphérie intérieure). Idéal si vous ne pouvez pas vous déplacer ; l’appareil repart ensuite à l’atelier pour intervention.",
     priceEuro: 19,
     durationHint: "Créneau sous 24–48h",
   },
   domicile_metro: {
     title: "Retrait à domicile — Métropole toulousaine",
-    description: "Récupération à domicile dans la métropole (hors intra-rocade).",
+    description:
+      "Colomiers, Blagnac, Tournefeuille, Labège, etc. (hors petite couronne immédiate). Frais de déplacement adaptés ; même suivi atelier qu’en boutique.",
     priceEuro: 29,
     durationHint: "Créneau sous 24–72h",
   },
   postal: {
     title: "Envoi postal",
-    description: "Vous expédiez l'appareil — étiquette et instructions après validation du devis.",
+    description:
+      "Vous emballez l’appareil (bulles, carton rigide) et l’expédiez. Nous vous envoyons l’étiquette ou l’adresse dédiée après validation du devis en ligne — idéal hors Toulouse.",
     priceEuro: 9,
     durationHint: "Réparation après réception",
   },

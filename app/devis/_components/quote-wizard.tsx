@@ -24,7 +24,9 @@ import { BRANDS, DEVICE_CATEGORY_LABELS, DEVICE_CATEGORIES, type BrandId } from 
 import { getModelsByBrand, MODELS } from "@/lib/data/models";
 import { PICKUP_MODE_META, PICKUP_MODES, type PickupModeId } from "@/lib/data/pickupModes";
 import { computeQuoteTotal } from "@/lib/data/repairCatalog";
+import { MARKET_COMPARABLE_DISCLAIMER } from "@/lib/data/market-benchmarks";
 import { REPAIR_IDS, REPAIR_LABELS, type RepairId } from "@/lib/data/repairs";
+import { DEVICE_CATEGORY_WIZARD_DETAIL, PANNE_STEP_INTRO } from "@/lib/data/wizard-copy";
 import { useDevisStore } from "@/lib/devis/store";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -32,10 +34,10 @@ import { cn } from "@/lib/utils";
 const STEPS = 8;
 
 const STEP_TITLES = [
-  "Catégorie",
-  "Marque",
-  "Modèle",
-  "Pannes",
+  "Type d'appareil",
+  "Marque & écosystème",
+  "Modèle exact",
+  "Symptômes & pannes",
   "Prise en charge",
   "Créneau",
   "Coordonnées",
@@ -101,6 +103,9 @@ export function QuoteWizard() {
           pickup: s.pickupMode,
         })
       : null;
+
+  const repairIdsForStep =
+    category === "console" ? REPAIR_IDS.filter((id) => id !== "camera" && id !== "unlock") : REPAIR_IDS;
 
   const progress = ((s.step + 1) / STEPS) * 100;
 
@@ -201,6 +206,9 @@ export function QuoteWizard() {
                     >
                       <p className="text-base font-semibold">{DEVICE_CATEGORY_LABELS[c].title}</p>
                       <p className="mt-1 text-sm text-muted-foreground">{DEVICE_CATEGORY_LABELS[c].description}</p>
+                      <p className="mt-3 border-t border-border/60 pt-3 text-xs leading-relaxed text-muted-foreground">
+                        {DEVICE_CATEGORY_WIZARD_DETAIL[c]}
+                      </p>
                     </button>
                   );
                 })}
@@ -212,7 +220,10 @@ export function QuoteWizard() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">2. Marque</CardTitle>
-                <CardDescription>Marques les plus demandées — autre marque en fin de liste.</CardDescription>
+                <CardDescription>
+                  Filtre automatique selon la catégorie choisie. « Autre marque » couvre les constructeurs non listés — vous
+                  préciserez le modèle à l&apos;étape suivante ou dans les notes.
+                </CardDescription>
               </CardHeader>
               <CardContent className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
                 {BRANDS.filter((b) => b.categories.includes(category)).map((b) => {
@@ -248,10 +259,13 @@ export function QuoteWizard() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">3. Modèle</CardTitle>
-                <CardDescription>Sélectionnez votre modèle ou indiquez qu&apos;il n&apos;est pas listé.</CardDescription>
+                <CardDescription>
+                  Liste filtrée par marque et catégorie. Si votre référence exacte n&apos;apparaît pas, choisissez « non listé » :
+                  nous appliquons la grille tarifaire moyenne de la catégorie jusqu&apos;au diagnostic en boutique.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-[360px] pr-3 sm:h-[420px]">
+                <ScrollArea className="h-[min(70vh,560px)] pr-3 sm:h-[min(72vh,620px)]">
                   <div className="grid gap-2 sm:grid-cols-2">
                     {getModelsByBrand(s.brandId as BrandId, category).map((m) => {
                       const active = s.modelId === m.id;
@@ -300,11 +314,13 @@ export function QuoteWizard() {
           {s.step === 3 && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">4. Panne(s)</CardTitle>
-                <CardDescription>Cochez tout ce qui correspond — plusieurs choix possibles.</CardDescription>
+                <CardTitle className="text-2xl">4. Symptômes &amp; pannes</CardTitle>
+                <CardDescription>
+                  {category ? PANNE_STEP_INTRO[category] : "Sélectionnez au moins une ligne ; les précisions libres aident au diagnostic."}
+                </CardDescription>
               </CardHeader>
               <CardContent className="grid gap-3 sm:grid-cols-2">
-                {REPAIR_IDS.map((id) => {
+                {repairIdsForStep.map((id) => {
                   const active = s.repairs.includes(id);
                   return (
                     <label
@@ -590,14 +606,25 @@ export function QuoteWizard() {
                     Pièces + main d&apos;œuvre + option {PICKUP_MODE_META[s.pickupMode!].title} (+{quote.pickupFee} €)
                   </p>
                 </div>
-                <ul className="space-y-2 text-sm">
-                  {quote.lines.map((l) => (
-                    <li key={l.id} className="flex justify-between border-b border-dashed border-border pb-2">
-                      <span className="text-muted-foreground">{l.label}</span>
-                      <span className="font-medium">{l.price} €</span>
-                    </li>
-                  ))}
+                <ul className="space-y-3 text-sm">
+                  {quote.lines.map((l) => {
+                    const hint = quote.marketHints.find((h) => h.id === l.id);
+                    return (
+                      <li key={l.id} className="border-b border-dashed border-border pb-3 last:border-0 last:pb-0">
+                        <div className="flex justify-between gap-3">
+                          <span className="text-muted-foreground">{l.label}</span>
+                          <span className="font-num font-medium tabular-nums">{l.price} €</span>
+                        </div>
+                        {hint ? (
+                          <p className="mt-1 font-num text-xs text-muted-foreground">
+                            Ailleurs (même réparation, est.) : {hint.band}
+                          </p>
+                        ) : null}
+                      </li>
+                    );
+                  })}
                 </ul>
+                <p className="text-xs leading-relaxed text-muted-foreground">{MARKET_COMPARABLE_DISCLAIMER}</p>
                 <div className="flex items-start gap-3 rounded-md border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
                   <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
                   <span>

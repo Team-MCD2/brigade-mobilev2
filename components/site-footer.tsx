@@ -32,13 +32,15 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <div className="flex items-start gap-4">
-            <span className="relative size-11 shrink-0">
+            <span className="relative shrink-0">
               <Image
                 src="/images/logo-transparent.png"
                 alt={siteConfig.name}
-                fill
-                className="object-contain object-left"
-                sizes="44px"
+                width={200}
+                height={48}
+                sizes="120px"
+                className="h-11 w-auto max-h-11 max-w-[140px] object-contain object-left"
+                style={{ maxHeight: 44, maxWidth: 140 }}
               />
             </span>
             <div>

@@ -8,23 +8,23 @@ export const DEVICE_CATEGORY_LABELS: Record<
 > = {
   smartphone: {
     title: "Smartphone",
-    description: "iPhone, Samsung, Google Pixel, Xiaomi…",
+    description: "Téléphone classique, pliable ou gaming — iPhone, Galaxy, Pixel, Xiaomi, OnePlus…",
   },
   tablet: {
     title: "Tablette",
-    description: "iPad, Galaxy Tab, Huawei MediaPad…",
+    description: "iPad, Galaxy Tab, liseuses grand format, tablettes graphiques Android.",
   },
   computer: {
     title: "Ordinateur portable / fixe",
-    description: "MacBook, iMac, PC Windows & Linux",
+    description: "MacBook, Surface, PC portable, tour / mini-PC — Windows, macOS ou Linux.",
   },
   console: {
     title: "Console & accessoires",
-    description: "Switch, manettes, casques…",
+    description: "PlayStation, Xbox, Switch, Steam Deck, manettes, docks — hors réparation TV.",
   },
   other: {
     title: "Autre appareil",
-    description: "Smartwatch, imprimante, unité centrale…",
+    description: "Montre, enceinte, routeur, périphérique USB — décrivez dans les notes.",
   },
 };
 
@@ -38,6 +38,7 @@ export type BrandId =
   | "sony"
   | "microsoft"
   | "asus"
+  | "nintendo"
   | "other";
 
 export interface Brand {
@@ -57,6 +58,7 @@ export const BRANDS: Brand[] = [
   { id: "sony", name: "Sony", categories: ["smartphone", "tablet", "console"] },
   { id: "microsoft", name: "Microsoft", categories: ["computer", "console"] },
   { id: "asus", name: "Asus", categories: ["computer", "tablet"] },
+  { id: "nintendo", name: "Nintendo", categories: ["console"] },
   { id: "other", name: "Autre marque", categories: ["smartphone", "tablet", "computer", "console", "other"] },
 ];
 

@@ -27,16 +27,16 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
       <div className="mx-auto flex max-w-6xl items-stretch justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex min-w-0 flex-col justify-center gap-1 py-4 sm:flex-row sm:items-center sm:gap-4 sm:py-0">
-          <span className="relative size-10 shrink-0 sm:size-11">
-            <Image
-              src="/images/logo-transparent.png"
-              alt={siteConfig.name}
-              fill
-              className="object-contain object-left"
-              sizes="44px"
-              priority
-            />
-          </span>
+          <Image
+            src="/images/logo-transparent.png"
+            alt={siteConfig.name}
+            width={200}
+            height={48}
+            sizes="(max-width: 640px) 120px, 160px"
+            priority
+            className="h-10 w-auto max-h-10 max-w-[140px] object-contain object-left sm:h-11 sm:max-h-11 sm:max-w-[160px]"
+            style={{ maxHeight: 44, maxWidth: 160 }}
+          />
           <div className="min-w-0 sm:border-l sm:border-border sm:pl-4">
             <span className="font-heading block text-lg leading-none tracking-tight text-foreground sm:text-xl">{siteConfig.name}</span>
             <span className="font-num mt-1 block text-[10px] uppercase tracking-[0.35em] text-muted-foreground">{siteConfig.address.city}</span>

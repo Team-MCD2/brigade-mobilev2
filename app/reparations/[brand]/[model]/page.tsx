@@ -7,6 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { computeQuoteTotal } from "@/lib/data/repairCatalog";
+import {
+  formatMarketBandEuro,
+  getElsewhereRepairPriceBandEuro,
+  MARKET_COMPARABLE_DISCLAIMER,
+} from "@/lib/data/market-benchmarks";
 import { getModelBySlug } from "@/lib/data/models";
 import { REPAIR_IDS, REPAIR_LABELS } from "@/lib/data/repairs";
 import { siteConfig } from "@/lib/site-config";
@@ -85,15 +90,28 @@ export default async function ModelRepairPage({ params }: Props) {
         {REPAIR_IDS.filter((id) => id !== "other").flatMap((id) => {
           const price = m.repairs[id];
           if (typeof price !== "number") return [];
+          const band = getElsewhereRepairPriceBandEuro({
+            modelId: m.id,
+            category: m.category,
+            repairId: id,
+            atelierTTC: price,
+          });
           return [
             <Card key={id} className="rounded-xl border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-semibold">{REPAIR_LABELS[id].label}</CardTitle>
               </CardHeader>
-              <CardContent className="flex items-center justify-between gap-3">
-                <Badge variant="secondary" className="font-num font-medium">
-                  à partir de {price} €
-                </Badge>
+              <CardContent className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col gap-1">
+                  <Badge variant="secondary" className="font-num w-fit font-medium">
+                    à partir de {price} €
+                  </Badge>
+                  {band ? (
+                    <p className="font-num text-xs text-muted-foreground">
+                      Ailleurs (même réparation, est.) : {formatMarketBandEuro(band)}
+                    </p>
+                  ) : null}
+                </div>
                 <Button asChild size="sm" className="rounded-lg">
                   <Link href={`/devis?model=${encodeURIComponent(m.id)}&repairs=${id}`}>Devis</Link>
                 </Button>
@@ -102,6 +120,7 @@ export default async function ModelRepairPage({ params }: Props) {
           ];
         })}
       </div>
+      <p className="mt-8 text-xs leading-relaxed text-muted-foreground">{MARKET_COMPARABLE_DISCLAIMER}</p>
       <div className="mt-10 flex flex-wrap gap-3">
         <Button asChild size="lg" className="rounded-lg">
           <Link href={`/devis?model=${encodeURIComponent(m.id)}`}>Parcours complet</Link>

@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reparations/sony",
     "/reparations/microsoft",
     "/reparations/asus",
+    "/reparations/nintendo",
     "/reparations/other",
   ].map((path) => ({
     url: `${base}${path}`,

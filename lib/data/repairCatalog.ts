@@ -1,4 +1,5 @@
 import type { DeviceCategoryId } from "./brands";
+import { getElsewhereRepairPriceBandEuro, formatMarketBandEuro } from "./market-benchmarks";
 import { getFallbackRepairs, getModelById, type DeviceModel } from "./models";
 import type { PickupModeId } from "./pickupModes";
 import { PICKUP_MODE_META } from "./pickupModes";
@@ -51,6 +52,8 @@ export function computeQuoteTotal(input: {
   pickup: PickupModeId | null;
 }): {
   lines: { id: RepairId; price: number; label: string }[];
+  /** Fourchette « prix ailleurs pour la même réparation » (voir market-benchmarks). */
+  marketHints: { id: RepairId; label: string; band: string }[];
   repairsSubtotal: number;
   pickupFee: number;
   total: number;
@@ -58,8 +61,23 @@ export function computeQuoteTotal(input: {
   const prices = getRepairPricesForModel(input.modelId, input.category);
   const { subtotal, lines } = sumRepairs(prices, input.repairs);
   const pickupFee = pickupSurcharge(input.pickup);
+
+  const marketHints = lines
+    .map((l) => {
+      const band = getElsewhereRepairPriceBandEuro({
+        modelId: input.modelId,
+        category: input.category,
+        repairId: l.id,
+        atelierTTC: l.price,
+      });
+      if (!band) return null;
+      return { id: l.id, label: l.label, band: formatMarketBandEuro(band) };
+    })
+    .filter((x): x is { id: RepairId; label: string; band: string } => x != null);
+
   return {
     lines,
+    marketHints,
     repairsSubtotal: subtotal,
     pickupFee,
     total: subtotal + pickupFee,

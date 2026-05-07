@@ -16,9 +16,21 @@ function escapeHtml(s: string) {
     .replaceAll('"', "&quot;");
 }
 
-function buildQuoteEmailHtml(payload: QuoteSubmitInput, ref: string, total: number) {
+function buildQuoteEmailHtml(
+  payload: QuoteSubmitInput,
+  ref: string,
+  total: number,
+  quote: ReturnType<typeof computeQuoteTotal>,
+) {
   const pickup = PICKUP_MODE_META[payload.pickupMode as PickupModeId];
   const repairs = payload.repairs.map((r) => REPAIR_LABELS[r as RepairId]?.label ?? r).join(", ");
+  const linesDetail = quote.lines
+    .map((l) => {
+      const hint = quote.marketHints.find((h) => h.id === l.id);
+      const extra = hint ? ` — ailleurs (même réparation, est.) ${escapeHtml(hint.band)}` : "";
+      return `<li>${escapeHtml(l.label)} : <strong>${l.price} €</strong>${extra}</li>`;
+    })
+    .join("");
   return `
   <h1>Nouveau devis ${escapeHtml(ref)}</h1>
   <p><strong>Contact :</strong> ${escapeHtml(payload.contact.name)} — ${escapeHtml(payload.contact.email)} — ${escapeHtml(payload.contact.phone)}</p>
@@ -29,6 +41,9 @@ function buildQuoteEmailHtml(payload: QuoteSubmitInput, ref: string, total: numb
   <p><strong>Adresse :</strong> ${escapeHtml(payload.contact.address ?? "")} ${escapeHtml(payload.contact.postalCode ?? "")} ${escapeHtml(payload.contact.city ?? "")}</p>
   <p><strong>Notes :</strong> ${escapeHtml(payload.contact.notes ?? "")}</p>
   <p><strong>Total indicatif TTC :</strong> ${total} € (à confirmer après diagnostic gratuit)</p>
+  <p><strong>Détail &amp; contexte marché :</strong></p>
+  <ul>${linesDetail}</ul>
+  <p style="font-size:12px;color:#666;">Fourchettes « prix ailleurs pour la même réparation » — indicatives, non contractuelles.</p>
   `;
 }
 
@@ -47,7 +62,7 @@ export async function submitQuote(raw: unknown): Promise<{ ok: true; ref: string
   const ref = `BM-${randomBytes(4).toString("hex").toUpperCase()}`;
   const total = quote.total;
 
-  const html = buildQuoteEmailHtml(data, ref, total);
+  const html = buildQuoteEmailHtml(data, ref, total, quote);
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_EMAIL ?? siteConfig.contact.email;
 
